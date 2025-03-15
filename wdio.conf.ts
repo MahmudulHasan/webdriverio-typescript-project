@@ -56,8 +56,14 @@ export const config: WebdriverIO.Config = {
     //
     capabilities: [{
         browserName: 'chrome',
-        "wdio:enforceWebDriverClassic": true
-    }],
+        "wdio:enforceWebDriverClassic": true,
+        "goog:chromeOptions": {
+            args: [
+                "--headless",
+                "--no-sandbox",
+                "--disable-dev-shm-usage",
+            ],
+            }}],
 
     //
     // ===================

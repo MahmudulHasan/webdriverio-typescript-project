@@ -30,7 +30,7 @@ Then("the user clicks Continue button on the modal dialog", async () => {
         const createNewOrderRadioButton = $("//span[normalize-space()='Create new order']");
         await createNewOrderRadioButton.waitForExist();
         await createNewOrderRadioButton.click();
-        await suitesContinueButton.waitForExist();
+        await suitesContinueButton.waitForClickable();
         await suitesContinueButton.click();
         await suitesContinueButton.waitForExist({ reverse: true });
     }

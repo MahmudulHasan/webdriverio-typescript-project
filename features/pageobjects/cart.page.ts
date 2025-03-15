@@ -11,6 +11,7 @@ export const savePreOrderButton = $("//button[normalize-space()='Save Pre-Order'
 
 export const checkOutButtonLocator = $('[class="adyen-checkout__button__content"]');
 import * as cardInfo from "../data/card-info.json";
+import { getDecryptedValue } from "./login.page";
 
 export async function sumOfAllItem(): Promise<number> {
     const itemPriceLocatorArray = browser.$$('[data-testid="item-subtotal"]');
@@ -37,17 +38,17 @@ export async function orderTotalAmount(): Promise<number> {
 export async function enterCardDetails() {
     await iFrameCardNumberLocator.waitForExist();
     await browser.switchFrame(iFrameCardNumberLocator);
-    await cardNumberLocator.setValue(cardInfo.card_number);
+    await cardNumberLocator.setValue(getDecryptedValue(cardInfo.card_number));
     await browser.switchToParentFrame();
     await iFrameExpiryDateLocator.waitForExist();
     await browser.switchFrame(iFrameExpiryDateLocator);
-    await expiryDateLocator.setValue(cardInfo.expiry_date);
+    await expiryDateLocator.setValue(getDecryptedValue(cardInfo.expiry_date));
     await browser.switchToParentFrame();
     await iFrameCvcLocator.waitForExist();
     await browser.switchFrame(iFrameCvcLocator);
-    await cvcLocator.setValue(cardInfo.cvc);
+    await cvcLocator.setValue(getDecryptedValue(cardInfo.cvc));
     await browser.switchToParentFrame();
-    await cardHolderLocator.setValue(cardInfo.name_on_card);
+    await cardHolderLocator.setValue(getDecryptedValue(cardInfo.name_on_card));
 }
 
 export async function sumOfAllTaxAndFee(): Promise<number> {

@@ -20,7 +20,17 @@ Feature: Purchase Items from the Automation Horizon Event
     And the user selects payment by Credit Card
     And the user pays with valid card details
 
-  @regression @sanity
+  @regression 
   Scenario: Validate total amounts in the cart 
     Then the subtotal amount should be equal to the sum of the items in the cart
     And the order total amount should be equal to the sum of all the taxes and fees
+  
+  @sanity
+  Scenario: Verify subtotal without payment details
+    When the user clicks on the Save Pre-Order button
+    And the user selects payment by Credit Card
+    And the user clicks Verify subtotal button
+    Then there should be error text "Card number field is empty" under "CARD NUMBER" field
+    And there should be error text "Expiry date field is empty" under "EXPIRY DATE" field
+    And there should be error text "Security code field is empty" under "CVC/CVV" field
+    And there should be error text "Invalid cardholder name" under "NAME ON CARD" field

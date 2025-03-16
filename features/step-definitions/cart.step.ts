@@ -1,9 +1,10 @@
 import { Then, When } from "@wdio/cucumber-framework";
 import { sumOfAllItem, subTotalAmount, creditCartLocator,
-     enterCardDetails, checkOutButtonLocator, startOrderLocator, 
+     enterCardDetails, startOrderLocator, 
      savePreOrderButton,
      sumOfAllTaxAndFee,
-     orderTotalAmount} from "../pageobjects/cart.page";
+     orderTotalAmount, clickVerifySubtotalButton,
+     getErrorTextInCardField} from "../pageobjects/cart.page";
 
 Then("the subtotal amount should be equal to the sum of the items in the cart", async () => {
     expect(await sumOfAllItem()).toEqual(await subTotalAmount());
@@ -20,12 +21,19 @@ When("the user selects payment by Credit Card", async () => {
 
 When("the user pays with valid card details", async () => {
     await enterCardDetails();
-    await checkOutButtonLocator.waitForEnabled();
-    await checkOutButtonLocator.click();
+    await clickVerifySubtotalButton();
     await startOrderLocator.waitForExist();
 });
 
 When("the user clicks on the Save Pre-Order button", async () => {
     await savePreOrderButton.waitForEnabled();
     await savePreOrderButton.click();
+});
+
+When("the user clicks Verify subtotal button", async() => {
+    await clickVerifySubtotalButton();
+});
+
+Then("there should be error text {string} under {string} field", async(errorText: string, fieldName:string) => {
+    expect(await getErrorTextInCardField(fieldName)).toEqual(errorText);
 });

@@ -9,6 +9,7 @@ This is a **WebdriverIO** automation framework using **TypeScript** for end-to-e
 - ✅ **WebdriverIO** with TypeScript
 - ✅ **Cucumber BDD** Support
 - ✅ **Parallel Test Execution**
+- ✅ **Data Driven Testing**
 - ✅ **Custom Reporting** with Cucumber HTML Reporter
 - ✅ **GitHub Actions CI/CD Integration**
 

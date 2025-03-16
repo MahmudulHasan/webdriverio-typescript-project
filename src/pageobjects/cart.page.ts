@@ -8,7 +8,6 @@ const cvcLocator = $("//input[contains(@id, 'adyen-checkout-encryptedSecurityCod
 const cardHolderLocator = $("//input[contains(@id, 'adyen-checkout-holderName')]");
 const paymentCheckbox = $('[class="adyen-checkout__checkbox__label"]');
 export const startOrderLocator = $("//button[normalize-space()='Start Order']");
-export const savePreOrderButton = $("//button[normalize-space()='Save Pre-Order']");
 
 export const checkOutButtonLocator = $('[class="adyen-checkout__button__content"]');
 import * as cardInfo from "../data/card-info.json";
@@ -78,4 +77,13 @@ export async function getErrorTextInCardField(fieldName:string): Promise<string>
         return await cardErrorTextFieldsArray[2].getText();
     else
         return await cardErrorTextFieldsArray[3].getText();
+}
+
+export async function selectPaymentByCreditCard() {
+    await creditCartLocator.waitForExist();
+    await creditCartLocator.click();
+}
+
+export async function loadPaymentSuccessPage() {
+    await startOrderLocator.waitForExist();
 }

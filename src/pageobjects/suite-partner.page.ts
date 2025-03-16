@@ -1,6 +1,5 @@
 const addToOrderButton = $('[data-testid="add-to-order-button"]');
 const viewCartButton = $('[data-test-id="view-cart-btn"]');
-export const suitePartnerPageTitle = $("#__next h1");
 
 export async function addOneItemFromEachCategory(): Promise<void> {
     const category = $("div[id*='category-'] a:nth-child(1)");

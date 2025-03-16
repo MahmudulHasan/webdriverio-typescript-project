@@ -6,6 +6,7 @@ const cardNumberLocator = $("//input[contains(@id, 'adyen-checkout-encryptedCard
 const expiryDateLocator = $("//input[contains(@id, 'adyen-checkout-encryptedExpiryDate')]");
 const cvcLocator = $("//input[contains(@id, 'adyen-checkout-encryptedSecurityCode')]");
 const cardHolderLocator = $("//input[contains(@id, 'adyen-checkout-holderName')]");
+const paymentCheckbox = $('[class="adyen-checkout__checkbox__label"]');
 export const startOrderLocator = $("//button[normalize-space()='Start Order']");
 export const savePreOrderButton = $("//button[normalize-space()='Save Pre-Order']");
 
@@ -59,4 +60,22 @@ export async function sumOfAllTaxAndFee(): Promise<number> {
         sumOfTaxAndFee += parseFloat(tax.replace("$", ""));
     }
     return parseFloat(sumOfTaxAndFee.toFixed(2));
+}
+
+export async function clickVerifySubtotalButton() {
+    await paymentCheckbox.waitForDisplayed();
+    await checkOutButtonLocator.waitForEnabled();
+    await checkOutButtonLocator.click();
+}
+
+export async function getErrorTextInCardField(fieldName:string): Promise<string> {
+    const cardErrorTextFieldsArray = browser.$$('[class="adyen-checkout__error-text"]');
+    if(fieldName === "CARD NUMBER")
+        return await cardErrorTextFieldsArray[0].getText();
+    else if(fieldName === "EXPIRY DATE")
+        return await cardErrorTextFieldsArray[1].getText();
+    else if(fieldName === "CVC/CVV")
+        return await cardErrorTextFieldsArray[2].getText();
+    else
+        return await cardErrorTextFieldsArray[3].getText();
 }

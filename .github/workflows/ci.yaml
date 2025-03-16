@@ -21,7 +21,7 @@ jobs:
           run: npm install
 
         - name: 🧪 Test
-          run: SECRET_KEY='Cheq@123' npx wdio wdio.conf.js --cucumberOpts.tagExpression='@regression'
+          run: SECRET_KEY=${{ secrets.SECRET_KEY }} npx wdio wdio.conf.js --cucumberOpts.tagExpression='@regression'
 
         - name: Upload Cucumber Report Artifact
           uses: actions/upload-artifact@v4

@@ -1,8 +1,9 @@
 Feature: Cancel Order
 
-  Background: Open Cart after adding items from each category
+  @regression @smoke
+  Scenario: Cancel order without payment
     Given the user logs in from the "login" page
-    Then the user should be in "My Events" page
+    And the user should be in "My Events" page
     When the user selects the event "Automation Horizon" from date "17 March"
     And the user clicks on the "CONTINUE" button
     Then the user should be in "My Suites" page
@@ -13,9 +14,6 @@ Feature: Cancel Order
     When the user adds one item from each category 
     And the user opens the cart 
     Then the user should be in "My Order" page
-
-  @regression @smoke
-  Scenario: Cancel order without payment
     When the user clicks on the "Cancel Order" button
     And the user clicks on the "Yes, cancel" button
     Then the user should be in "My Events" page

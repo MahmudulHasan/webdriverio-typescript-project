@@ -2,7 +2,7 @@ Feature: Purchase Items from the Automation Horizon Event
 
   Background: Open Cart after adding items from each category
     Given the user logs in from the "login" page
-    Then the user should be in "My Events" page
+    And the user should be in "My Events" page
     When the user selects the event "Automation Horizon" from date "17 March"
     And the user clicks on the "CONTINUE" button
     Then the user should be in "My Suites" page

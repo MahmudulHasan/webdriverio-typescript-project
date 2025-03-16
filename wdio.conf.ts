@@ -59,6 +59,7 @@ export const config: WebdriverIO.Config = {
         "wdio:enforceWebDriverClassic": true,
         "goog:chromeOptions": {
             args: [
+                "--headless",
                 "--no-sandbox",
                 "--disable-dev-shm-usage",
             ],

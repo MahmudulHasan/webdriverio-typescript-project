@@ -35,5 +35,5 @@ export function getDecryptedValue(data: string) {
 }
 
 export async function openUrl(path: string) {
-    return browser.url('https://suites.uat.cheqplease.com/' + path);
+    return browser.url(process.env.URL + path);
 }
